@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotNull
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.GetMapping
@@ -84,5 +85,13 @@ class OrderController(private val orderService: OrderService) {
         orderService.approveOrderPayment(id)
 
         return ResponseEntity.ok().build()
+    }
+
+    @GetMapping("/port")
+    fun getPort(
+        @Value("\${local.server.port}")
+        port: String
+    ): String {
+        return String.format("Request served by the instance running on the port %s", port)
     }
 }
