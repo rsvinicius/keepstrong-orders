@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component
 
 @Component
 class PaymentListener {
-    @RabbitListener(queues = ["payment.finished"])
+    @RabbitListener(queues = ["payment.orders-details"])
     fun receiveMessage(paymentDto: PaymentDto) {
 
         println("----- Message Received -----\n" +
